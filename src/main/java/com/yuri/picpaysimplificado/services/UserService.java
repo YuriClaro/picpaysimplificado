@@ -23,4 +23,8 @@ public class UserService {
             System.out.println("Usuário sem saldo suficiente");
         }
     }
+
+    public User findUserById(Long id) throws Exception {
+        return userRepository.findUserById(id).orElseThrow(() -> new Exception("Usuário inexistente"));
+    }
 }

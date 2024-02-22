@@ -1,5 +1,6 @@
 package com.yuri.picpaysimplificado.entitites.user;
 
+import com.yuri.picpaysimplificado.repositories.dtos.UserDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -30,4 +31,13 @@ public class User {
     private BigDecimal balance;
     @Enumerated(EnumType.STRING)
     private UserType userType;
+
+    public User(UserDTO userDTO) {
+        this.name = userDTO.name();
+        this.cpf = userDTO.cpf();
+        this.email = userDTO.email();
+        this.password = userDTO.password();
+        this.balance = userDTO.balance();
+        this.userType = userDTO.userType();
+    }
 }

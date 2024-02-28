@@ -16,13 +16,13 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public void validateTransfer(User payer, BigDecimal amount) {
+    public void validateTransfer(User payer, BigDecimal amount) throws Exception{
         if (payer.getUserType() == UserType.SHOPKEEPER) {
-            System.out.println("Usuário é um LOJISTA, transação não autorizada");
+            throw new Exception("Usuário é um LOJISTA, transação não autorizada");
         }
 
         if(payer.getBalance().compareTo(amount) < 0) {
-            System.out.println("Usuário sem saldo suficiente");
+            throw new Exception("Usuário sem saldo suficiente");
         }
     }
 

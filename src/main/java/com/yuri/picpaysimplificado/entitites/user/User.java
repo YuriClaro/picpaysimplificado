@@ -31,6 +31,7 @@ public class User {
     private BigDecimal balance;
     @Enumerated(EnumType.STRING)
     private UserType userType;
+    private String message;
 
     public User(UserDTO userDTO) {
         this.name = userDTO.name();
@@ -39,5 +40,6 @@ public class User {
         this.password = userDTO.password();
         this.balance = userDTO.balance();
         this.userType = userDTO.userType();
+        this.message = userDTO.message();
     }
 }

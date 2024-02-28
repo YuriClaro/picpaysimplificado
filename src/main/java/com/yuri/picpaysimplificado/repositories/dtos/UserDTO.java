@@ -10,5 +10,6 @@ public record UserDTO(
         String email,
         String password,
         BigDecimal balance,
-        UserType userType) {
+        UserType userType,
+        String message) {
 }

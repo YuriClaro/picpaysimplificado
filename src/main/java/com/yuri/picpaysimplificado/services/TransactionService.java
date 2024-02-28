@@ -54,9 +54,8 @@ public class TransactionService {
         userService.saveUser(payer);
         userService.saveUser(payee);
 
-        notificationService.sendNotification(payer, "Transação bem sucedida, dinheiro enviado");
-        notificationService.sendNotification(payee, "Transação bem sucedida, dinheiro recebido");
-
+        notificationService.sendNotification(payer, "Transação bem sucedida, dinheiro enviado R$ " + transactionDTO.amount());
+        notificationService.sendNotification(payee, "Transação bem sucedida, dinheiro recebido R$ " + transactionDTO.amount());
 
         return newTransaction;
     }

@@ -2,6 +2,8 @@ package com.yuri.picpaysimplificado.services;
 
 import com.yuri.picpaysimplificado.entitites.user.User;
 import com.yuri.picpaysimplificado.entitites.user.UserType;
+import com.yuri.picpaysimplificado.exceptions.SaldoInsuficienteException;
+import com.yuri.picpaysimplificado.exceptions.UserTypeException;
 import com.yuri.picpaysimplificado.repositories.UserRepository;
 import com.yuri.picpaysimplificado.repositories.dtos.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +20,11 @@ public class UserService {
 
     public void validateTransfer(User payer, BigDecimal amount) throws Exception{
         if (payer.getUserType() == UserType.SHOPKEEPER) {
-            throw new Exception("Usuário é um LOJISTA, transação não autorizada");
+            throw new UserTypeException("Usuário é um LOJISTA, transação não autorizada");
         }
 
         if(payer.getBalance().compareTo(amount) < 0) {
-            throw new Exception("Usuário sem saldo suficiente");
+            throw new SaldoInsuficienteException("Usuário sem saldo suficiente");
         }
     }
 
